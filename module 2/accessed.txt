@@ -1,0 +1,25 @@
+package oopsprgs;
+//1.non static data members can't be accessed in static method and static intialize block
+class Test{
+	int num;
+	Test(){
+		num=10;
+	}
+	static {//intializer block
+		System.out.println(num);
+		
+	}
+	public static void print() {//method
+		System.out.println(num);
+		
+	}
+}
+public class StaticDemo {
+
+	public static void main(String[] args) {
+		Test test = new Test();
+		
+
+	}
+
+}

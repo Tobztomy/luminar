@@ -1,0 +1,28 @@
+package oopsprgs;
+//2.non static method can't be invoked in static method and static intialize block
+class Test{
+	int num;
+	Test(){
+		num=10;
+	}
+	static {//intializer block
+		
+		display();
+	}
+	public static void print() {//method
+		
+		display();
+	}
+	public void display() {//2
+		System.out.println("hai");
+	}
+}
+public class StaticDemo {
+
+	public static void main(String[] args) {
+		Test test = new Test();
+		
+
+	}
+
+}

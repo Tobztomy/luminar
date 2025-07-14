@@ -1,0 +1,22 @@
+mysql -u root -p
+
+enter password
+
+show databases;
+use luminar;
+show tables;
+SELECT * FROM students;
+
+
+source c:\luminardemotables.sql
+
+
+mysql> use classicmodels;
+Database changed
+mysql> show tables;
+
+select * from customers;
+
+exit
+
+exit

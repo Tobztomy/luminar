@@ -1,0 +1,45 @@
+//null will not print
+select o.order_id,c.cust_name,o.order_date from orders as o inner join customers as c on o.cust_id=c.cust_id;
+
+
+//null in right side
+select o.order_id,c.cust_name,o.order_date from orders as o left join customers as c on o.cust_id=c.cust_id;
+
+
+total order of each customer>>
+select c.cust_name, count(o.order_id) as total_orders
+from customers as c left join orders as o on 
+c.cust_id=o.cust_id group by c.cust_name;
+
+print customer details with more than one order>>>
+select c.cust_name, count(o.order_id) as total_orders
+from customers as c left join orders as o on 
+c.cust_id=o.cust_id group by c.cust_name having count(o.order_id)>1;
+
+find employees and this manager>>>
+select e1.firstName as Employee,e2.firstName as Manager
+from employees as e1 left join employees as e2
+on e1.reportsTo=e2.employeeNumber;
+
+
+create table teacher(
+teacher_Id int NOT NULL,
+teacherName varchar(45),
+primary key (teacher_Id)
+);
+
+create table PersonsDetails(
+Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Age int,
+primary key (Id)
+);
+
+create table orders(
+OrderId int NOT NULL,
+OrderNumber int NOT NULL,
+Id int,
+primary key (OrderId),
+foreign key (Id) references PersonsDetails(Id)
+);

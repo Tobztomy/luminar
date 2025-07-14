@@ -1,0 +1,70 @@
+insert into teacher values (10,'tobin',25600.2);
+
+insert into teacher(teacher_name) values ('manu');
+
+>>>
+SELECT customerName, city, state, country FROM classicmodels.customers;
+
+
+select DISTINCT country from customers;
+
+select customerName, country from customers where country='UK';
+
+select customerName,creditLimit from customers where creditLimit>50000;
+
+select customerName,creditLimit from customers where creditLimit=53100;
+select customerName,creditLimit from customers where creditLimit<=50000;
+select customerName,creditLimit from customers where creditLimit>=60000;
+select customerName,creditLimit from customers where creditLimit<>71800;
+
+select customerName,city from customers order by city;
+
+select customerName,city from customers order by city ASC;
+select customerName,city from customers order by city DESC;
+
+>>
+
+select firstName,jobTitle,officeCode from employees where jobTitle='Sales Rep' AND officeCode=1;
+
+select firstName,jobTitle,officeCode from employees where jobTitle='Sales Rep' OR officeCode=1 order by officeCode ASC;
+
+>>>
+select 
+	firstName,jobTitle,officeCode 
+from 
+	employees 
+where 
+	officeCode BETWEEN 1 AND 3 
+order by 
+	officeCode ASC;
+
+
+
+>>>
+
+select firstName,lastName from employees where lastName LIKE '%son';
+
+select firstName,officeCode from employees where officeCode IN (1,3,6) order by officeCode ASC;
+select * from employees LIMIT 3;
+
+select firstName,lastName from employees where lastName LIKE '%son';
+
+select firstName,extension from employees where extension LIKE '_101';
+
+select firstName,officeCode from employees where officeCode IN (1,3,6) order by officeCode ASC;
+
+select * from employees LIMIT 3;
+
+select MIN(amount) as smallest_amount from payments;
+
+select count(productCode) as total_product from products;
+select jobTitle, count(employeeNumber) as total_number from employees group by jobTitle;
+
+select avg(buyPrice) as average_price from products;
+
+select sum(quantityInStock) as total_stock from products;
+
+select city, count(city) as number_of_cities from customers group by city;
+
+select officeCode, count(officeCode) as number_employees from employees group by officeCode having count(employeeNumber)>3 order by count(employeeNumber) desc;
+

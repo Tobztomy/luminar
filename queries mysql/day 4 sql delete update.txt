@@ -1,0 +1,13 @@
+Alter table students add column student_profile varchar(45);
+
+Alter table students modify student_profile varchar(50);
+
+//make safe update untick if without where clause
+update students set student_profile='active';
+
+update students set student_profile='in active' where student_id=2;
+
+delete from students;
+
+delete from students where student_id=3;
+

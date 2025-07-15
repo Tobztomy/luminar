@@ -1,0 +1,100 @@
+package com;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class MysqlJdbcCurdStatement {
+	
+	static Connection conn = null;
+	static Statement stmt=null;
+	static int flag=0;
+	static ResultSet rs= null;
+	
+	public static void insert() {
+		try {
+			flag=stmt.executeUpdate("insert into students(student_name,student_mark,student_profile)values('bini',456.7,'active')");	
+			if(flag>0) {
+				System.out.println("value inserted");
+			}else {
+				System.out.println("value not inserted");
+			}
+			stmt.close();
+			conn.close();
+		}catch(SQLException sql){
+			sql.printStackTrace();
+		}
+	}
+
+	
+	public static void update() {
+		try {
+			flag=stmt.executeUpdate("update students set student_profile='inactive' where student_id=2");	
+			if(flag>0) {
+				System.out.println("value updated");
+			}else {
+				System.out.println("value not updated");
+			}
+			stmt.close();
+			conn.close();
+		}catch(SQLException sql){
+			sql.printStackTrace();
+		}
+	}
+	
+	public static void delete() {
+		try {
+			flag=stmt.executeUpdate("delete from students where student_id=3");	
+			if(flag>0) {
+				System.out.println("value deleted");
+			}else {
+				System.out.println("value not deleted");
+			}
+			stmt.close();
+			conn.close();
+		}catch(SQLException sql){
+			sql.printStackTrace();
+		}
+	}
+	
+	public static void display() {
+		try {
+			rs=stmt.executeQuery("select * from students");
+			System.out.println("ID\tNAME\tMARKS\tPROFILE");
+			while(rs.next()) {
+				System.out.println(rs.getInt(1)+"\t"+rs.getString(2)+"\t"+rs.getFloat(3)+"\t"+rs.getString(4));
+			}
+		}catch(SQLException sql) {
+			sql.printStackTrace();
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/luminar","root","tobztomy");
+			stmt = conn.createStatement();
+			//insert();
+			//update();
+			//delete();
+			display();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+				conn.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			
+		}
+	}
+
+}

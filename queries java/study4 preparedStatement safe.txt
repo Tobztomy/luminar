@@ -1,0 +1,102 @@
+package com;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class MySqlJdbcCrudPreparedStatementTwo {
+	static final String URL ="jdbc:mysql://localhost:3306/luminar?useSSL=FALSE";
+	static final String USER_NAME ="root";
+	static final String PASS_WORD = "tobztomy";
+	
+	static Connection conn = null;
+	static PreparedStatement pstmt=null;
+	static ResultSet rs= null;
+	
+	static boolean flag=false;
+	
+	public static boolean insert(String name,float mark,String status) {
+		try {
+			String sql="insert into students(student_name,student_mark,student_profile) values(?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setFloat(2, mark);
+			pstmt.setString(3, status);
+			pstmt.executeUpdate();
+			flag=true;
+		}catch(SQLException sql){
+			sql.printStackTrace();
+			
+		}
+		return flag;
+		
+	}
+	
+	public static boolean update(String name,float mark,String status,int id) {
+		try {
+			String sql="update students set student_name =?,student_mark=?,student_profile=? where student_id=? ";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setFloat(2, mark);
+			pstmt.setString(3, status);
+			pstmt.setInt(4, id);
+			pstmt.executeUpdate();
+			flag=true;
+		}catch(SQLException sql){
+			sql.printStackTrace();
+			
+		}
+		return flag;
+		
+	}
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		
+		int id;
+		String name;
+		float mark;
+		String status;
+		boolean flag =false;
+		
+		System.out.println("enter name");
+		name=sc.nextLine();
+		
+		System.out.println("enter mark");
+		mark=sc.nextFloat();
+		sc.nextLine();
+
+		System.out.println("enter profile");
+		status=sc.nextLine();
+		
+		
+		System.out.println("enter id");
+		id=sc.nextInt();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(URL,USER_NAME,PASS_WORD);
+			//flag=insert(name,mark,status);
+			flag=update(name,mark,status,id);
+			if(flag) {
+				System.out.println("updated");
+			}else {
+				System.out.println("error");
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				conn.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			
+		}
+		sc.close();
+	}
+
+}

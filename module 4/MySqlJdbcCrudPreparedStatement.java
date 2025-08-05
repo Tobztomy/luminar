@@ -1,0 +1,112 @@
+package com;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class MySqlJdbcCrudPreparedStatement {
+	static final String URL ="jdbc:mysql://localhost:3306/luminar?useSSL=FALSE";
+	static final String USER_NAME ="root";
+	static final String PASS_WORD = "tobztomy";
+	
+	static Connection conn = null;
+	static PreparedStatement pstmt=null;
+	static ResultSet rs= null;
+	
+	static boolean flag=false;
+	
+	public static boolean insert(String name,float mark,String status) {
+		try {
+			String sql="insert into students(student_name,student_mark,student_profile) values('"+name+"',"+mark+",'"+status+"')";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			flag=true;
+		}catch(SQLException sql){
+			sql.printStackTrace();
+			
+		}
+		return flag;
+		
+	}
+	
+	public static boolean update(String name,float mark,String status,int id) {
+		try {
+			String sql="update students set student_name ='"+name+"',student_mark="+mark+",student_profile='"+status+"' where student_id="+id+" ";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			flag=true;
+		}catch(SQLException sql){
+			sql.printStackTrace();
+			
+		}
+		return flag;
+		
+	}
+	
+	public static boolean delete(int id) {
+	    try {
+	        String sql = "DELETE FROM students WHERE student_id = "+id+"";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.executeUpdate();
+	        flag = true;
+	    } catch (SQLException sql) {
+	        sql.printStackTrace();
+	    }
+	    return flag;
+	}
+
+	
+	
+	
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		
+		int id;
+//		String name;
+//		float mark;
+//		String status;
+		boolean flag =false;
+		
+//		System.out.println("enter name");
+//		name=sc.nextLine();
+//		
+//		System.out.println("enter mark");
+//		mark=sc.nextFloat();
+//		sc.nextLine();
+//
+//		System.out.println("enter profile");
+//		status=sc.nextLine();
+		
+		
+		System.out.println("enter Id");
+		id=sc.nextInt();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(URL,USER_NAME,PASS_WORD);
+			//flag=insert(name,mark,status);
+//			flag=update(name,mark,status,id);
+			flag=delete(id);
+			if(flag) {
+				System.out.println("deleted");
+			}else {
+				System.out.println("error");
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				conn.close();
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			
+		}
+		sc.close();
+	}
+
+}

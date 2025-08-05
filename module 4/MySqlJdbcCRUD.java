@@ -1,0 +1,36 @@
+package com;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class MySqlJdbcCRUD {
+
+	public static void main(String[] args) {
+		try {
+		//load & register driver
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		// establish a connection
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/luminardbdemos","root","tobztomy");
+		//create a statement	
+			Statement stmt = conn.createStatement();
+		int flagInsert=stmt.executeUpdate("insert into student(stud_roll,stud_name,stud_mark)values(19,'bini',456.7)");	
+		if(flagInsert>0) {
+			System.out.println("value inserted");
+		}else {
+			System.out.println("value not inserted");
+		}
+		stmt.close();
+		conn.close();
+		
+		
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,41 @@
+Create folder
+open eclipse<file<switch workspace<other<browse folder
+java EE must be active below x button on right top corner
+server>no servers are available>select the server type>apache>tomcatv9.0server>next>
+
+Tomcat server name(apache tomcat v9.0)> tomcat installation directory(browse for extracted apache tomcat folder)>finish
+
+
+file>new>dynamic web project>projectname> next>src\main\jav >next
+
+context root:project name
+context directory:src\main\webapp
+
+tick generate web.xml deployment descriptor> finish
+completed...
+
+
+project name folder(agricardomconnect>webapp>WEB-INF>lib>mysql-connector-java-8.0.13 (java file)
+
+
+right click on sysql connector(inside lib folder) > build path> add to build path....java resources folder will be created
+
+web.xml(take source file from below near terminal)> keep only first file only others remove eg. <welcome-file>index.html</welcome-file>
+
+to create html
+webapp> new > html
+
+to create folder
+webapp> new > folder .... for css, js, images
+
+to create java file
+java resources>  src\main\jav > package create
+
+com.agricardconnect......(in small letters)
+
+package(com.agricardconnect)> new > class> .....no main method needed
+
+
+
+@WebServlet("/login")
+

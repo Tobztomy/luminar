@@ -1,0 +1,21 @@
+"If the boolean variable flag is true, then execute the code inside the if block."
+
+🔍 Explanation:
+flag is a variable of type boolean, which can hold only two values: true or false.
+
+In an if statement, Java expects a condition that evaluates to true or false.
+
+So when you write if (flag), it checks whether flag == true.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+boolean flag = true;
+
+if (flag) {
+    System.out.println("Flag is true!");
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>
+Alternative (longer) syntax:
+if (flag == true)
+This works the same as if (flag), but if (flag) is preferred for readability.
+

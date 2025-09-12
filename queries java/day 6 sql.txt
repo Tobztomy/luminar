@@ -1,0 +1,17 @@
+select customerName from customers where creditLimit=(select max(creditLimit) from customers);
+
+
+>>EMPNAME OF PERSON WHO WORKS IN DEPARTMENT HR AND FINANCE
+
+select emp_name, dept_id from employees where dept_id IN (select dept_id from department where dept_name IN ('HR', 'FINANCE'));
+
+>>find employees who salary is above avg salary of their departments
+
+select emp_name,dept_id,emp_salary from employees as e1 where emp_salary > (select avg(emp_salary) from employees as e2 where e1.dept_id=e2.dept_id);
+
+>>find the employees who earn max salary
+select emp_name,emp_salary from employees where emp_salary=(select max(emp_salary) from employees);
+
+
+>>find names of employees who work in the it department using nested sub query>>>
+select emp_name,dept_id from employees where dept_id IN(select dept_id from department where dept_name = 'IT');

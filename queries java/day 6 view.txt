@@ -1,0 +1,17 @@
+CREATE PROCEDURE `manage_students` (
+IN p_name varchar(100),
+IN p_mark int,
+IN p_status varchar(50)
+)
+BEGIN
+INSERT INTO students(student_name,student_mark,student_profile) 
+values (p_name,p_mark,p_status);
+SELECT * FROM students;
+END
+
+
+>>>>
+call manage_students('anu',540,'active');
+///insert and select done
+
+>>>

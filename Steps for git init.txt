@@ -1,0 +1,37 @@
+🔹 Steps for git init
+
+Go to your project folder
+
+cd path/to/your/project
+
+
+Initialize Git
+
+git init
+
+
+👉 This creates a hidden .git folder.
+
+Add your files to staging
+
+git add .
+
+
+Commit your changes
+
+git commit -m "Initial commit"
+
+
+Rename the branch to main (default in GitHub)
+
+git branch -M main
+
+
+Add the remote (replace with your repo URL)
+
+git remote add origin https://github.com/your-username/your-repo.git
+
+
+Push to GitHub
+
+git push -u origin main
